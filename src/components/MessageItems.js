@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
 import MessageTimer from "./MessageTimer";
+import Emoji from 'react-emoji-render';
 
-class MessageList extends Component {
+class MessageItems extends Component {
+    
     render() {
         return (
             <div
@@ -11,11 +13,11 @@ class MessageList extends Component {
                     padding: 10,
                 }}
             >
-                <div>{this.props.item}</div>
-                <MessageTimer />
+                <Emoji text={this.props.msg.message}/>
+                {/* <MessageTimer /> */}
             </div>
         );
     };
 }
 
-export default MessageList;
+export default MessageItems;

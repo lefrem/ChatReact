@@ -14,7 +14,7 @@ class Timer extends Component {
     }
     
     componentDidMount() {
-        this.interval = setInterval(() => this.tick(), 60000);
+        this.interval = setInterval(() => this.tick(), 1000);
     }
     
     componentWillUnmount() {

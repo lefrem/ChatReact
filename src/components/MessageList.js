@@ -1,23 +1,36 @@
 import React, { Component } from "react";
 import MessageItems from "./MessageItems";
+import { connect } from 'react-redux';
+import { getMessages } from "../action/Messages";
 
 class MessageList extends Component {
-    constructor(props) {
+  componentDidMount(){
+    this.props.dispatch(getMessages());
+  }  
+  
+  constructor(props) {
         super(props);
         this.state = { items: [], text: '' };
       }
 
   render() {
+    console.log(this.props)
     return (
       <div style={{margin: 25,}}>
-        {this.props.items.map(item => (
-            <MessageItems
-                key={item.id} item={item.text}
-            />
-          ))}
+        {this.props.messages.map(msg => (
+          msg.map(final => (
+            <MessageItems msg={final} />
+          ))         
+        ))}
       </div>
     );
   }
 }
 
-export default MessageList;
+const mapStateToProps = (state) => {
+    return {
+      messages: state.Message
+    }
+  }
+
+export default connect(mapStateToProps)(MessageList);
